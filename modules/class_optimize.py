@@ -15,16 +15,6 @@ from modules.visualize import visualisiere_ergebnisse
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import moegliche_ladestroeme_in_prozent
 
-
-def isfloat(num: Any) -> bool:
-    """Check if a given input can be converted to float."""
-    try:
-        float(num)
-        return True
-    except ValueError:
-        return False
-
-
 class optimization_problem:
     def __init__(
         self,
