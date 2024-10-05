@@ -16,7 +16,7 @@ from flask import Flask, jsonify, redirect, request, send_from_directory, url_fo
 from modules.class_load import LoadForecast
 from modules.class_load_container import Gesamtlast
 from modules.class_load_corrector import LoadPredictionAdjuster
-from modules.class_optimize import isfloat, optimization_problem
+from modules.class_optimize import optimization_problem
 from modules.class_pv_forecast import PVForecast
 from modules.class_soc_calc import BatteryDataProcessor
 from modules.class_strompreis import HourlyElectricityPriceForecast
@@ -30,6 +30,13 @@ opt_class = optimization_problem(
     prediction_hours=prediction_hours, strafe=10, optimization_hours=optimization_hours
 )
 
+def isfloat(num: Any) -> bool:
+    """Check if a given input can be converted to float."""
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
 @app.route("/soc", methods=["GET"])
 def flask_soc():
