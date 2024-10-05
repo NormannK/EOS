@@ -31,6 +31,7 @@ opt_class = optimization_problem(
     prediction_hours=prediction_hours, strafe=10, optimization_hours=optimization_hours
 )
 
+
 def isfloat(num: Any) -> bool:
     """Check if a given input can be converted to float."""
     try:
@@ -38,6 +39,7 @@ def isfloat(num: Any) -> bool:
         return True
     except ValueError:
         return False
+
 
 @app.route("/soc", methods=["GET"])
 def flask_soc():
@@ -84,9 +86,9 @@ def flask_strompreis():
     date_now, date = get_start_enddate(
         prediction_hours, startdate=datetime.now().date()
     )
-    filepath = os.path.join(
-        r"test_data", r"strompreise_akkudokAPI.json"
-    )  # Adjust the path to the JSON file
+    # filepath = os.path.join(
+    #    r"test_data", r"strompreise_akkudokAPI.json"
+    # )  # Adjust the path to the JSON file
     price_forecast = HourlyElectricityPriceForecast(
         source=f"https://api.akkudoktor.net/prices?start={date_now}&end={date}",
         prediction_hours=prediction_hours,
